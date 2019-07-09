@@ -1,49 +1,94 @@
-// var first = 1;
-// const pi = 3.14;
+// Начальные переменные
+let money,
+    name,
+    time,
+    price;
 
-// {
-//     let second = 2;
-// }
+// Окно с вводом бюджета магазина
+function start() {
+    money = prompt("Ваш бюджет?");
+    while (isNaN(money) || money == "" || money == null){
+        money = prompt("Ваш бюджет?");
+    }
+    name = prompt("Название вашего магазина?").toUpperCase();
+    time = 21;
+}
+start()
 
-// console.log(4/0);
-// console.log('string' * 9);
+// Объект со свойствами магазина
+let mainList = {
+    budget: money,
+    shopName: name,
+    shopGoods: [],
+    employers: {},
+    open: false,
+    discount: false
+}
 
-// var und
-// console.log(und);
+// Окно с вводом товаров в магазине
+function chooseGoods() {
+    for (let i = 0; i < 5; i++) {
+        let a = prompt("Какой тип товаров будем продавать?");
+    
+        if ((typeof(a)) === 'string' && (typeof(a)) != null  && a != '' && a.length < 50) {
+            console.log("Название товара веденно правильно");
+            mainList.shopGoods[i] = a;
+        } else {
+            i = i - 1;
+        }
+    }
+}
+chooseGoods();
 
-// obj = {
-//     name: "John",
-//     age: 25,
-//     isMarried: false
-// }
+// Окно с добавление сотрудников магазина
+function addEmployers(){
+    for (let o = 0; o < 5; o++) {
+        let e = prompt("Имя сотрудника?");
 
-// console.log(obj["name"]);
+        if ((typeof(e)) === 'string' && (typeof(e)) != null  && e != '' && e.length < 50) {
+            console.log("Имя сотрудника введено правильно");
+            mainList.employers[o] = e;
+        } else {
+            o = o - 1;
+        }
+    } 
+}
+addEmployers();
 
-// var arr = ['plum', 'orange', 'apple'];
-// console.log(arr[2]);
+// График работы магазина
+function workTime(time){
+    if (time < 0) {
+        console.log("Такого не может быть");
+    } else if(time > 8 && time < 20) {
+        console.log("Время работать");
+        } else if(time < 24) {
+            console.log('Уже слишком поздно!');
+            } else if(time > 24) {
+                console.log('Привет, ты чо, ахуел');
+                };
+}
+workTime(9);
 
-// // confirm("Дашь в жопу?");
+// Окно с расчётом ежедневного бюджета магазина
+function everydayBudget(){
+    alert("Eжедневный бюджет - "+ mainList.budget / 30);
+}
 
-// var answer = +prompt("Сколько лет?", "18");
+everydayBudget();
 
-// console.log( typeof(answer));
-// // console.log('arr' + " - object");
-// // console.log(4 + " - object");
 
-var incr = 10,
-    decr = 10;
+console.log(mainList);
 
-// incr++;
-// decr--;
+// (typeof(a)) === 'string' && (typeof(a)) === null  && a != ''
 
-// console.log(incr++);
-// console.log(decr--);
-// console.log(30%4);
-
-// console.log(incr == 10);
-
-var isChecked = true;
-var isClose = true;
-
-console.log(isChecked || !isClose);
-
+function checkDiscount(price){
+    price = 100
+    var discountPrice = 20
+    var discountPercent = price / 100 * discountPrice;
+    if (mainList.discount = false) {
+        console.log(price)
+    } else if (mainList.discount = true) {
+        newPrice = price-discountPercent;
+        console.log(newPrice)
+    }
+}
